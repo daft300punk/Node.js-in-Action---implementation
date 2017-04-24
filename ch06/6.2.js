@@ -3,7 +3,15 @@ function logger(req, res, next) {
   next();
 }
 
+function hello(req, res) {
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello world');
+}
+
 var connect = require('connect');
 var app = connect();
-app.use(logger);
+
+app.use(logger)
+  .use(hello);
+  
 app.listen(3000);
